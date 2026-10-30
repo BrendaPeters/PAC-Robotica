@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Aprenda robótica e fundamentos do Arduino com exemplos simples, um LED interativo e uma revisão de robótica em cinco etapas.">
+  <meta name="theme-color" content="#000000">
+  <title>PAC Robótica — do primeiro circuito à primeira ideia</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600;700&family=Jersey+10&display=swap" rel="stylesheet">
+  <script src="script.js" defer></script>
+</head>
+<body><div class="reading-progress" aria-hidden="true"></div>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<div class="code-deco" aria-hidden="true">{ }</div>
+<header class="topbar container">
+  <a class="brand" href="#inicio"><span aria-hidden="true">[+]</span> PAC Robótica</a>
+  <nav aria-label="Navegação principal"><a href="#fundamentos">Fundamentos</a><a href="#arduino">Arduino</a><a href="#pratica">Na prática</a><a href="#sensor-lab">Laboratório</a><a href="#trilha">Trilha</a><a href="#quiz">Revisão</a></nav>
+</header>
+<main id="conteudo">
+<section id="inicio" class="hero container">
+  <span class="badge">APRENDA • EXPERIMENTE • CRIE</span>
+  <h1>Grandes ideias começam<br>com um <span>pequeno circuito.</span></h1>
+  <p class="intro">Seu primeiro passo no mundo da robótica.<br>Entenda os conceitos, conheça o Arduino e transforme curiosidade em aprendizado.</p>
+  <a class="button" href="#fundamentos">Começar a explorar <span aria-hidden="true">↓</span></a>
+  <div class="tags" aria-label="Assuntos do site"><span>sensores</span><span>circuitos</span><span>programação</span><span>criatividade</span></div>
+  <div class="circuit" aria-hidden="true"><span>ENTRADA</span><i>→</i><span>PROCESSAMENTO</span><i>→</i><span>SAÍDA</span></div>
+</section>
+<section id="fundamentos" class="container section">
+  <div class="section-heading"><span class="eyebrow">01 / O PONTO DE PARTIDA</span><h2>Afinal, o que é robótica?</h2><p>É a área que combina mecânica, eletrônica e programação para construir sistemas capazes de perceber e agir no mundo físico.</p></div>
+  <div class="grid three">
+    <article class="card"><span class="card-number">01</span><h3>Perceber</h3><p>Os <strong>sensores</strong> captam informações do ambiente, como luz, distância ou temperatura. São as entradas do sistema.</p><p class="example">Exemplo: um sensor percebe um obstáculo.</p></article>
+    <article class="card"><span class="card-number">02</span><h3>Decidir</h3><p>O <strong>controlador</strong> executa as instruções do programa e usa os dados recebidos para escolher uma ação.</p><p class="example">Exemplo: se há um obstáculo, mudar de direção.</p></article>
+    <article class="card"><span class="card-number">03</span><h3>Agir</h3><p>Os <strong>atuadores</strong> produzem uma ação física. Motores movimentam peças; um buzzer produz som.</p><p class="example">Exemplo: os motores fazem o carrinho virar.</p></article>
+  </div>
+  <aside class="note">💡 Um robô não precisa parecer uma pessoa. Um braço industrial e um aspirador robótico também fazem parte desse universo.</aside>
+</section>
+<section id="arduino" class="container section">
+  <div class="section-heading"><span class="eyebrow">02 / CONHEÇA A PLACA</span><h2>Arduino: uma ponte entre código e mundo real.</h2><p>Arduino é uma plataforma de prototipagem eletrônica. Você escreve um programa, envia para a placa e ela interage com os componentes conectados.</p></div>
+  <div class="grid two">
+    <article class="card"><h3>Conhecendo o Uno R3</h3><dl><dt>Microcontrolador</dt><dd>É o chip que executa o programa gravado na placa.</dd><dt>Pinos digitais</dt><dd>Leem ou enviam estados HIGH e LOW. Podem receber um botão ou controlar um LED.</dd><dt>Entradas analógicas</dt><dd>Leem níveis de um sinal, como a variação de um potenciômetro.</dd><dt>USB e GND</dt><dd>A USB permite enviar o programa e alimentar a placa. GND é a referência elétrica comum do circuito.</dd></dl></article>
+    <article class="card"><h3>Quatro peças para começar</h3><dl><dt>LED</dt><dd>Emite luz e tem polaridade: a orientação da ligação importa.</dd><dt>Resistor</dt><dd>Limita a corrente. Um LED externo precisa de um resistor em série, dimensionado para o circuito.</dd><dt>Protoboard</dt><dd>Permite montar e alterar conexões sem solda.</dd><dt>Jumpers</dt><dd>São os fios usados para conectar a placa e os componentes.</dd></dl></article>
+  </div>
+  <aside class="note">Antes de montar: desconecte a alimentação para alterar ligações. Não una 5V diretamente ao GND. Motores precisam de um circuito de acionamento adequado; não os ligue diretamente aos pinos.</aside>
+</section>
+<section id="pratica" class="container section">
+  <div class="section-heading"><span class="eyebrow">03 / SEU PRIMEIRO EXPERIMENTO</span><h2>Olá, mundo. Pisque um LED!</h2><p>Comece pelo LED integrado da placa. No Uno R3, ele é identificado com a letra L. Esse exercício não precisa de componentes externos.</p></div>
+  <div class="grid two lab">
+    <article class="card"><div class="code-header"><span>blink.ino</span><button id="copy" class="small-button" type="button">Copiar código</button></div><pre><code id="blink-code">void setup() {
+  pinMode(LED_BUILTIN, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(1000);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(1000);
+}</code></pre><p id="copy-status" class="small" role="status"></p></article>
+    <article class="card experiment"><span class="eyebrow">EXPERIMENTE AQUI</span><div class="led" id="led" aria-hidden="true"></div><p id="led-status" role="status">LED desligado</p><button class="button" id="toggle-led" type="button" aria-pressed="false">Iniciar demonstração</button><label for="interval">Tempo de cada estado: <output id="interval-value" for="interval">1000 ms</output></label><input id="interval" type="range" min="200" max="2000" step="100" value="1000"><p class="small">Representação visual no navegador. O controle altera apenas esta demonstração; para mudar o Arduino, edite os dois valores de delay no código.</p></article>
+  </div>
+  <div class="explanation"><p><strong>setup()</strong> roda uma vez ao iniciar: configura o pino como saída.</p><p><strong>loop()</strong> se repete: liga, espera, desliga e espera novamente.</p><p><strong>delay(1000)</strong> pausa por 1.000 milissegundos, ou 1 segundo.</p></div>
+  <details><summary>Como executar na placa?</summary><ol><li>Instale a Arduino IDE pelo site oficial e conecte a placa por um cabo USB de dados.</li><li>Selecione o modelo da sua placa e a porta correspondente na IDE.</li><li>Cole o código em um novo sketch e clique em Verificar para compilar.</li><li>Clique em Carregar. Quando o envio terminar, observe o LED integrado.</li></ol><p>Se o envio falhar, confira o cabo, a placa selecionada e a porta. O programa fica na placa e volta a executar quando ela é ligada.</p></details>
+</section>
+<section id="sensor-lab" class="container section"><div class="section-heading"><span class="eyebrow">LABORATÓRIO INTERATIVO</span><h2>Como um robô percebe um obstáculo?</h2><p>Altere a distância e veja a decisão mudar. Neste modelo, o robô para quando o obstáculo está a 20 cm ou menos.</p></div><div class="sensor-grid card" id="sensor-grid"><div class="robot-scene" aria-hidden="true"><div class="robot-face">• •</div><div class="robot-obstacle" id="obstacle"></div><span class="sensor-caption">SENSOR → DECISÃO → AÇÃO</span></div><div><div class="distance-value"><output id="distance-value" for="distance">60</output> cm</div><label for="distance">Distância até o obstáculo</label><input id="distance" type="range" min="5" max="100" value="60"><p class="sensor-status" id="sensor-status" role="status">Caminho livre: motores ligados.</p><pre><code>se (distância &lt;= 20 cm)
+  parar motores
+senão
+  seguir em frente</code></pre><p class="small">Demonstração simplificada no navegador, sem conexão com hardware. O circuito e a leitura de um sensor real precisam ser configurados.</p></div></div></section><section id="trilha" class="container section">
+  <div class="section-heading"><span class="eyebrow">DA ELETRICIDADE AO SEGUIDOR DE LINHA</span><h2>Uma trilha para conectar as peças.</h2><p>Esta revisão acompanha os temas do <a href="https://escalada.dev/modelos/robotica/conteudo/" target="_blank" rel="noopener noreferrer">material de Robótica da Escalada.dev</a>, de Manfred Heil Junior / MT — Manfred Tecnologia. Os exemplos e as perguntas abaixo foram elaborados para este site.</p></div>
+  <div class="grid three">
+    <article class="card"><span class="card-number">01 / ELETRICIDADE</span><h3>O circuito precisa fechar.</h3><p>Tensão é a diferença de potencial entre dois pontos; corrente é o fluxo de carga; resistência se opõe à corrente. Em um resistor, V = R × I. Com 5 V sobre 1.000 Ω, a corrente é 0,005 A, ou 5 mA.</p><p>Um diodo conduz principalmente em um sentido. O LED é um diodo que emite luz: precisa de polaridade correta e limitação de corrente. A bateria fornece energia e a chave abre ou fecha o caminho.</p><p class="example">Multímetro: tensão em paralelo; corrente em série; resistência com o circuito desenergizado. Use a escala e os terminais adequados.</p></article>
+    <article class="card"><span class="card-number">02 / PROGRAMAÇÃO</span><h3>Ler, comparar, repetir.</h3><p>Variáveis guardam valores. O monitor serial ajuda a observar leituras. if/else escolhe caminhos; switch seleciona casos; for e while repetem instruções. Um botão com pull-down mantém a entrada em LOW quando está solto.</p><p>Uma luz de emergência pode comparar a leitura de luminosidade com um limiar. A direção dessa comparação depende da montagem e precisa ser conferida com leituras reais.</p><p class="example">Funções organizam ações reutilizáveis; parâmetros recebem valores e o retorno entrega um resultado. Vetores guardam sequências de dados; matrizes organizam dados em mais de uma dimensão.</p></article>
+    <article class="card"><span class="card-number">03 / MOVIMENTO</span><h3>Controle com potência.</h3><p>O driver recebe comandos da placa e aciona os motores usando uma alimentação adequada. A ponte H permite inverter o sentido de um motor DC. Em um robô diferencial, velocidades diferentes nas rodas fazem o robô virar.</p><p>No Uno R3, analogWrite em um pino PWM usa valores de 0 a 255. PWM varia a proporção de tempo ligado; 128 representa aproximadamente 50%. Não é uma tensão analógica contínua. map pode converter uma leitura de 0–1023 para essa faixa.</p><p class="example">Outros componentes ampliam as ações: servo para posição angular, motor de passo para passos, LCD para exibir informações e ultrassônico para medir distância.</p></article>
+  </div>
+  <div class="grid two" style="margin-top:16px">
+    <article class="card"><span class="card-number">04 / PERCEPÇÃO</span><h3>Encontre a linha.</h3><p>Sensores de refletância observam a luz refletida pelo piso. Calibrar sobre as superfícies clara e escura ajuda a interpretar as leituras; não presuma que um mesmo valor representa preto em todo sensor. Um conjunto de sensores permite estimar a posição da linha.</p><p>Defina funções como seguir, virar e parar. Teste os sentidos dos motores e uma velocidade baixa antes de tentar completar a pista. O laboratório de obstáculos acima é um exemplo separado de decisão por distância.</p></article>
+    <article class="card"><span class="card-number">05 / AJUSTE FINO</span><h3>Corrija e teste de novo.</h3><p>O erro é a diferença entre a posição desejada e a medida. No controle proporcional, a correção é Kp × erro. Nesta convenção didática, motor esquerdo = base + correção e direito = base − correção; o sinal correto depende da orientação dos sensores e motores.</p><p>Se a base é 100, Kp é 2 e o erro é +10, os comandos são 120 e 80. Limite-os à faixa permitida. A parte D considera a variação do erro; a parte I acumula erro. Ganhos altos podem causar oscilações. Teste uma mudança por vez.</p><p class="example">Uma máquina de estados separa situações como seguir, recuperar a linha e parar na chegada. Reconhecer a chegada evita que o robô continue sem necessidade.</p></article>
+  </div>
+</section>
+<section id="curiosidades" class="container section">
+  <div class="section-heading"><span class="eyebrow">04 / VOCÊ SABIA?</span><h2>Pequenas descobertas, novas ideias.</h2></div>
+  <div class="grid three"><article class="card"><span class="symbol" aria-hidden="true">&lt;/&gt;</span><h3>Arduino não é só uma placa</h3><p>O nome também envolve ferramentas de programação e uma comunidade que compartilha projetos e conhecimento.</p></article><article class="card"><span class="symbol" aria-hidden="true">~</span><h3>Nem toda saída é analógica</h3><p>No Uno R3, os pinos marcados com ~ suportam PWM: pulsos digitais cuja proporção de tempo ligado pode variar para controlar, por exemplo, o brilho de um LED.</p></article><article class="card"><span class="symbol" aria-hidden="true">↻</span><h3>Um erro também ensina</h3><p>Um LED apagado pode indicar polaridade invertida ou uma conexão solta. Testar uma hipótese de cada vez ajuda a encontrar a causa.</p></article></div>
+</section>
+<section id="quiz" class="container section">
+  <div class="section-heading"><span class="eyebrow">05 / MISSÃO DE REVISÃO</span><h2>Conecte o que você aprendeu.</h2><p>25 questões em cinco folhas: duas fáceis, duas médias e um desafio final. Você pode voltar e revisar antes de concluir. A correção aparece somente no final.</p></div>
+  <form id="quiz-form" class="card" novalidate>
+    <ol id="quiz-steps" class="quiz-steps" aria-label="Etapas da revisão"></ol>
+    <div class="quiz-meta"><h3 id="step-title" tabindex="-1"></h3><span id="quiz-count"></span></div>
+    <progress id="quiz-progress" max="25" value="0" aria-label="Questões respondidas"></progress>
+    <p id="step-description"></p><div id="quiz-questions"></div>
+    <p id="quiz-error" role="alert"></p>
+    <div class="quiz-actions"><button id="quiz-back" class="small-button" type="button">← Anterior</button><button id="quiz-next" class="button" type="submit">Próxima folha →</button><button id="quiz-reset" class="small-button" type="button" hidden>Refazer revisão</button></div>
+    <div id="quiz-result" role="status" tabindex="-1"></div>
+  </form>
+</section>
+<section id="materiais" class="container section">
+  <div class="section-heading"><span class="eyebrow">CONTINUE EXPLORANDO</span><h2>Sua próxima ideia começa aqui.</h2></div>
+  <div class="grid three"><article class="card"><h3>Documentação oficial</h3><p>Explore a placa usada nos exemplos e seus recursos.</p><a href="https://docs.arduino.cc/hardware/uno-rev3/" target="_blank" rel="noopener noreferrer">Conhecer o Uno R3 ↗</a></article><article class="card"><h3>Exemplo Blink</h3><p>Veja o tutorial oficial para piscar o LED integrado.</p><a href="https://docs.arduino.cc/built-in-examples/basics/Blink/" target="_blank" rel="noopener noreferrer">Consultar o tutorial ↗</a></article><article class="card"><h3>Arduino IDE</h3><p>Encontre o editor para escrever e enviar seus programas.</p><a href="https://www.arduino.cc/en/software" target="_blank" rel="noopener noreferrer">Acessar o site oficial ↗</a></article></div>
+</section>
+</main>
+<footer class="container"><a class="brand" href="#inicio">[+] PAC Robótica</a><p>Um espaço para aprender, experimentar e compartilhar. • 2026</p><a href="#inicio">Voltar ao início ↑</a></footer>
+</body></html>
