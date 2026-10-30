@@ -39,3 +39,4 @@ No repositório, vá a **Settings → Pages → Build and deployment**. Selecion
 
 ## Créditos
 Projeto educacional PAC Robótica • 2026. Arduino é uma marca de seus respectivos titulares; este é um material educacional independente.
+# PAC-Robotica
